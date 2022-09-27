@@ -91,6 +91,7 @@ class Content extends StatelessWidget {
         Responsive.isMobile(context)
             ? ListView.builder(
                 shrinkWrap: true,
+                physics: const ScrollPhysics(),
                 itemCount: WorkModel.works.length,
                 itemBuilder: (context, index) {
                   final work = WorkModel.works[index];
@@ -109,6 +110,7 @@ class Content extends StatelessWidget {
             : Responsive.isTablet(context)
                 ? ListView.builder(
                     shrinkWrap: true,
+                    physics: const ScrollPhysics(),
                     itemCount: WorkModel.works.length,
                     itemBuilder: (context, index) {
                       final work = WorkModel.works[index];
@@ -126,7 +128,7 @@ class Content extends StatelessWidget {
                   )
                 : GridView.builder(
                     shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
+                    physics: const ScrollPhysics(),
                     gridDelegate:
                         const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
