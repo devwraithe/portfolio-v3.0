@@ -12,7 +12,7 @@ void main() {
 }
 
 class LosDevwraitos extends StatelessWidget {
-  const LosDevwraitos({super.key});
+  const LosDevwraitos({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
