@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 
 class Responsive extends StatelessWidget {
-  final Widget desktop;
-  final Widget? largeTab;
-  final Widget? midTab;
-  final Widget? smallTab;
-  final Widget? mobile;
+  final dynamic desktop;
+  final dynamic largeTab;
+  final dynamic mediumTab;
+  final dynamic smallTab;
+  final dynamic mobile;
 
   const Responsive({
     Key? key,
-    required this.desktop,
+    this.desktop,
     this.largeTab,
-    this.midTab,
+    this.mediumTab,
     this.smallTab,
     this.mobile,
   }) : super(key: key);

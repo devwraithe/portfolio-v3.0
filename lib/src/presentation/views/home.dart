@@ -1,79 +1,67 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
-import 'package:portfolio_v3/src/presentation/widgets/content.dart';
-import 'package:portfolio_v3/src/presentation/widgets/custom_row.dart';
+import 'package:portfolio_v3/src/presentation/widgets/information.dart';
+import 'package:portfolio_v3/src/presentation/widgets/projects.dart';
 import 'package:portfolio_v3/src/presentation/widgets/responsive.dart';
+import 'package:portfolio_v3/src/presentation/widgets/toolkit_card.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
-
   @override
   State<Home> createState() => _HomeState();
 }
 
-class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
-  final ScrollController _controller = ScrollController();
-  final FocusNode _focusNode = FocusNode();
-
-  void _handleKeyEvent(RawKeyEvent event) {
-    var offset = _controller.offset;
-    if (event.logicalKey == LogicalKeyboardKey.arrowUp) {
-      setState(() {
-        if (kReleaseMode) {
-          _controller.animateTo(offset - 200,
-              duration: const Duration(milliseconds: 30), curve: Curves.ease);
-        } else {
-          _controller.animateTo(offset - 200,
-              duration: const Duration(milliseconds: 30), curve: Curves.ease);
-        }
-      });
-    } else if (event.logicalKey == LogicalKeyboardKey.arrowDown) {
-      setState(() {
-        if (kReleaseMode) {
-          _controller.animateTo(offset + 200,
-              duration: const Duration(milliseconds: 30), curve: Curves.ease);
-        } else {
-          _controller.animateTo(offset + 200,
-              duration: const Duration(milliseconds: 30), curve: Curves.ease);
-        }
-      });
-    }
-  }
-
-  @override
-  void dispose() {
-    _focusNode.dispose();
-    super.dispose();
-  }
-
+class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
+
     return Scaffold(
-      backgroundColor: Colors.black,
-      body: SafeArea(
-        child: RawKeyboardListener(
-          autofocus: true,
-          focusNode: _focusNode,
-          onKey: _handleKeyEvent,
-          child: SingleChildScrollView(
-            controller: _controller,
-            child: Responsive.isMobile(context)
-                ? const Padding(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: 28,
+      backgroundColor: const Color(0XFF141414),
+      body: Responsive.isMobile(context) || Responsive.isTablet(context)
+          ? SingleChildScrollView(
+              padding: Responsive.isMobile(context)
+                  ? const EdgeInsets.symmetric(
+                      horizontal: 22,
+                      vertical: 28,
+                    )
+                  : const EdgeInsets.symmetric(
+                      horizontal: 38,
+                      vertical: 32,
                     ),
-                    child: Content(),
-                  )
-                : const Padding(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: 52,
-                    ),
-                    child: Content(),
-                  ),
-          ),
-        ),
-      ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Information(),
+                  Responsive.isMobile(context) || Responsive.isTablet(context)
+                      ? Padding(
+                          padding: const EdgeInsets.only(top: 52),
+                          child: Text(
+                            "Things I've Done",
+                            style: Responsive.isMobile(context)
+                                ? textTheme.subtitle1?.copyWith(
+                                    fontWeight: FontWeight.w200,
+                                    height: 1.48,
+                                  )
+                                : textTheme.headline6?.copyWith(
+                                    fontWeight: FontWeight.w200,
+                                    height: 1.42,
+                                  ),
+                          ),
+                        )
+                      : const SizedBox(),
+                  const SizedBox(height: 32),
+                  const Projects(),
+                ],
+              ),
+            )
+          : Row(
+              children: const [
+                Information(),
+                Projects(),
+              ],
+            ),
     );
   }
 }
