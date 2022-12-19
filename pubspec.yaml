@@ -24,6 +24,28 @@ flutter:
     - assets/images/
 
   fonts:
+    - family: Articulat CF
+      fonts:
+        - asset: assets/fonts/articulat-cf/ArticulatCF-Thin.ttf
+          weight: 100
+        - asset: assets/fonts/articulat-cf/ArticulatCF-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/articulat-cf/ArticulatCF-DemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/articulat-cf/ArticulatCF-ExtraBold.ttf
+          weight: 800
+        - asset: assets/fonts/articulat-cf/ArticulatCF-ExtraLight.ttf
+          weight: 200
+        - asset: assets/fonts/articulat-cf/ArticulatCF-Heavy.ttf
+          weight: 900
+        - asset: assets/fonts/articulat-cf/ArticulatCF-Light.ttf
+          weight: 300
+        - asset: assets/fonts/articulat-cf/ArticulatCF-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/articulat-cf/ArticulatCF-Normal.ttf
+          weight: 400
+        - asset: assets/fonts/articulat-cf/ArticulatCF-Normal.ttf
+          weight: 400
     - family: Articulat
       fonts:
         - asset: assets/fonts/ArticulatCF-Thin.otf
